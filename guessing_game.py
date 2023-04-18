@@ -31,7 +31,19 @@ def start_game():
     ( You can add more features/enhancements if you'd like to. )
     """
     # write your code inside this function.
+print("Welcome to the great guessing game! I am excited for you to take a swing at your guessing skills")
+print()
+solution = 3
 
+guess = input("What number would you like to guess? ")
+
+while int(guess != solution):
+  if int(guess > solution):
+    print("It's lower")
+  elif int(guess < solution):
+    print("It's higher")
+  else:
+    print("You got the correct answer")
 
 
 # Kick off the program by calling the start_game function.
