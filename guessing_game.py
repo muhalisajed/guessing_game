@@ -9,41 +9,60 @@ NOTE: If you prefer to work locally on your own computer, you can totally do tha
 """
 
 import random
-
+from statistics import median 
+from statistics import mode
 
 def start_game():
-    """Psuedo-code Hints
-    
-    When the program starts, we want to:
-    ------------------------------------
-    1. Display an intro/welcome message to the player.
-    2. Store a random number as the answer/solution.
-    3. Continuously prompt the player for a guess.
+
+# 1. Display an intro/welcome message to the player.
+  print("Welcome to the great guessing game! I am excited for you to take a swing at your guessing skills")
+  print()
+# 2. Store a random number as the answer/solution.
+solution = random.randint(1, 100)
+
+"""3. Continuously prompt the player for a guess.
       a. If the guess greater than the solution, display to the player "It's lower".
       b. If the guess is less than the solution, display to the player "It's higher".
-    
-    4. Once the guess is correct, stop looping, inform the user they "Got it"
-         and show how many attempts it took them to get the correct number.
-    5. Save their attempt number to a list.
-    6. At the end of the game, show the player, 1) their number of attempts, 2) the mean, median, and mode of the saved attempts list.
-    7. Ask the player if they want to play again.
-    
-    ( You can add more features/enhancements if you'd like to. )
-    """
-    # write your code inside this function.
-print("Welcome to the great guessing game! I am excited for you to take a swing at your guessing skills")
-print()
-solution = 3
+"""
 
-guess = input("What number would you like to guess? ")
-
-while int(guess != solution):
-  if int(guess > solution):
-    print("It's lower")
-  elif int(guess < solution):
-    print("It's higher")
+guess = []
+response = ""
+while response != solution:
+  response = input("Please choose a number between 1 and 100? ")
+  guess.append(int(response))
+  if int(response) > solution:
+      print("It's lower")
+  elif int(response) < solution:
+      print("It's higher")
   else:
-    print("You got the correct answer")
+      print("You got the correct answer")
+      print(f"It took you {len(guess)} tries")
+"""
+4. Once the guess is correct, stop looping, inform the user they "Got it"
+         and show how many attempts it took them to get the correct number.
+"""
+
+# 5. Save their attempt number to a list.
+
+# 6. At the end of the game, show the player, 1) their number of attempts, 2) the mean, median, and mode of the saved attempts list.
+
+guess.sort()
+print(guess)
+mean = round(sum(guess)/len(guess))
+median = round(median(guess))
+mode = mode(guess)
+print("Overall Statistics")
+print(mean)
+print(median)
+print(mode)
+# 7. Ask the player if they want to play again.
+restart = input("Would you like to play again? (Yes/No) ")
+if restart.lower() == "yes":
+    start_game()
+else:
+    print("GAME OVER")
+    print()
+
 
 
 # Kick off the program by calling the start_game function.
